@@ -1,195 +1,154 @@
-# RoadResQ — AI-Powered Smart Roadside Assistance Platform
+RoadResQ 🛞
+“Help when your vehicle stops.”
 
-> **"Help when your vehicle stops."**  
-> *Smart roadside assistance, when you need it.*
+Smart roadside assistance, when you need it.
 
-RoadResQ is a production-grade, AI-powered roadside assistance platform engineered to assist motorists when their car, two-wheeler, electric vehicle, or commercial vehicle encounters an emergency, breakdown, flat tyre, or fuel exhaustion.
+RoadResQ is a production-quality, AI-powered roadside assistance platform designed to seamlessly connect stranded drivers with verified service providers. Built with a focus on safety, real-time tracking, and intelligent problem classification, RoadResQ goes beyond generic booking apps to offer a complete, localized, and context-aware emergency transportation solution.
 
----
+🌟 Key Features
+🧠 ResQ AI Assistant
+Natural Language Processing: Understands emergency descriptions in English, Tamil, Hindi, and Tanglish.
 
-## 🌟 Key Features
+Smart Problem Classification: Automatically categorizes issues (Fuel, Tyre, Battery, Mechanical, Towing, Emergency) and determines urgency levels.
 
-1. **Natural Language & Voice Breakdown Diagnostics (ResQ AI)**
-   - Multi-lingual problem understanding in **English**, **தமிழ் (Tamil)**, **हिन्दी (Hindi)**, and **Tanglish** (*"En bike petrol theernthu pochu"*).
-   - High-confidence classification across 9 breakdown categories: Fuel, Tyre, Battery Jumpstart, Mechanical, Electrical, Engine, Towing, Accident, and Unknown.
-   - Dynamic safety advisories for high-speed highway lanes and accident scenes.
-   - Built-in photo inspection for punctured tyres, dashboard warning indicators, and physical vehicle impact.
+Voice Integration: Built-in speech-to-text allowing users to describe their problems hands-free.
 
-2. **Legal & Safe Fuel Guidance Protocol**
-   - In strict compliance with motor vehicle and fire safety standards, RoadResQ does **not** promote unauthorized open petrol delivery.
-   - Intelligently guides drivers to verified 24/7 fuel hubs or coordinates safe flatbed escort towing.
+Intelligent Provider Matching: Matches users based on service compatibility, ETA, provider rating, and distance—not just proximity.
 
-3. **Multi-Factor Provider Matching Algorithm**
-   - Dispatches certified technicians based on vehicle type compatibility, tooling, real-time distance, rating (minimum 4.6+), and live availability.
+Safety First: Detects high-risk situations, suggests moving to safe locations, and prevents unsafe instructions (e.g., hazardous fuel handling).
 
-4. **Live Real-Time Map & Technician Tracking**
-   - OpenStreetMap & Leaflet interactive map showing the stranded customer's incident pin, the assigned rescue van's live position, route trajectory, and dynamic ETA countdown.
+📱 Multi-Role Ecosystem
+Customer App: Manage vehicles, request assistance via AI or manual forms, track providers live on a map, process payments, and leave ratings.
 
-5. **Instant Emergency SOS Life Safety System**
-   - 5-second countdown with immediate cancel option to prevent accidental triggers.
-   - Immediate 1-click broadcast of GPS coordinates via WhatsApp/SMS to registered family members.
-   - Quick hotlinks to Police Control (112) and Medical Ambulance (108).
+Provider App: Toggle online/offline status, receive job requests, navigate to stranded users, update job statuses in real-time, and track earnings.
 
-6. **Comprehensive Multi-Role Architecture**
-   - **Customer Portal**: Vehicle management, 7-step booking wizard, live map tracking, service invoices, and review ratings.
-   - **Service Provider Portal**: Online/Offline toggle, incoming broadcast modal with 30s timer, turn-by-turn navigation, and today's earnings overview.
-   - **Admin Command Center**: KPI charts, pending provider KYC accreditation approval/suspension, and live incident monitor.
+Admin Dashboard: Comprehensive oversight of users, provider verifications, active requests, complaints, and platform revenue analytics.
 
-7. **Multi-Theme & Accessible UI**
-   - Engineered with deep navy (`#0B192C`), professional blue, neutral slate, and high-visibility safety orange (`#FF6500`).
-   - Supports **Light Mode**, **Dark Mode**, and **System Default** with zero theme flashing.
+🌍 Localization & Accessibility
+Deep Multi-language System: Full UI and AI translation architecture supporting English, Tamil, and Hindi.
 
----
+Design System: Professional, startup-grade UI avoiding generic AI gradients. Includes accessible, deeply integrated Light, Dark, and System-default themes.
 
-## 🛠 Tech Stack
+📍 Real-Time Location & SOS
+Live Tracking: Real-time map updates from request to arrival.
 
-- **Frontend**: React 19, TypeScript, Tailwind CSS v4, Lucide Icons, React Router v7
-- **Mapping & Geocoding**: Leaflet, React-Leaflet, OpenStreetMap
-- **AI & Speech**: Web Speech API (speech recognition in en-US, ta-IN, hi-IN), ResQ AI Local Multi-Turn Engine, and Gemini API Adapter
-- **Backend & Persistence**: Cloud Firestore, Firebase Auth, Firebase Storage, and persistent LocalStorage sync layer
-- **Deployment**: Vercel & Firebase Hosting ready
+SOS Workflow: Immediate access to emergency contacts, live location sharing, and nearby safe havens (police stations, hospitals, fuel stations).
 
----
+🛠 Tech Stack
+Frontend: React, TypeScript, Tailwind CSS, Lucide Icons, React Router
 
-## 📂 Project Structure
+Backend: Firebase (Authentication, Cloud Firestore, Storage, Cloud Functions)
 
-```text
-ResQ-app/
-├── public/
-│   └── favicon.svg                  # Custom RoadResQ SVG Brand Icon
-├── src/
-│   ├── components/
-│   │   ├── common/
-│   │   │   ├── BrandLogo.tsx        # Vector Road + Pin + Rescue Logo
-│   │   │   └── SosModal.tsx         # 5s Emergency SOS Life Safety Modal
-│   │   ├── map/
-│   │   │   └── AssistanceMap.tsx    # Leaflet Map with Custom Moving Markers
-│   │   └── navigation/
-│   │       ├── Navbar.tsx           # Desktop Header & Role Switcher
-│   │       └── MobileNav.tsx        # Mobile Bottom Navigation
-│   ├── contexts/
-│   │   ├── AuthContext.tsx          # Multi-role authentication (Customer, Provider, Admin)
-│   │   └── AssistanceContext.tsx    # Live GPS tracking & simulation state
-│   ├── i18n/
-│   │   ├── translations.ts          # Complete dictionaries for EN, தமிழ், हिन्दी
-│   │   └── LanguageContext.tsx      # Language provider hook
-│   ├── pages/
-│   │   ├── admin/
-│   │   │   └── AdminDashboard.tsx   # Admin supervisor & KYC verification queue
-│   │   ├── provider/
-│   │   │   ├── ProviderDashboard.tsx# Provider dispatch & navigation console
-│   │   │   └── ProviderProfile.tsx  # Provider license & credential management
-│   │   ├── AssistanceWizard.tsx     # 7-Step roadside booking wizard
-│   │   ├── CustomerHome.tsx         # Customer home dashboard
-│   │   ├── LandingPage.tsx          # Startup landing showcase
-│   │   ├── LiveTracking.tsx         # Real-time technician tracking & payment
-│   │   ├── RequestsHistory.tsx      # Invoices & service history
-│   │   ├── ResQAIAssistant.tsx      # Dedicated voice & photo AI triage
-│   │   ├── SafePlacesView.tsx       # 24/7 fuel pumps, hospitals & police
-│   │   └── VehiclesView.tsx         # Registered vehicles management
-│   ├── services/
-│   │   ├── aiService.ts             # ResQ AI diagnostic & safety engine
-│   │   ├── firebase.ts              # Firebase configuration & security rules
-│   │   ├── mockData.ts              # 5 customers, 8 providers, 10 vehicles, 15 requests
-│   │   ├── speechService.ts         # Voice recognition & TTS
-│   │   └── storageService.ts        # Reactive local data persistence
-│   ├── theme/
-│   │   └── ThemeContext.tsx         # Light / Dark / System theme provider
-│   ├── types/
-│   │   └── index.ts                 # Full TypeScript schemas
-│   ├── App.tsx                      # App root router
-│   ├── index.css                    # Tailwind v4 theme tokens
-│   └── main.tsx                     # React DOM entry
-├── vercel.json                      # Vercel SPA rewrite & security headers
-├── .env.example                     # Environment configuration reference
-└── package.json
-```
+AI Engine: Secure server-side AI API integration
 
----
+Maps/Location: Google Maps API (or equivalent Maps provider)
 
-## 🚀 Getting Started
+Deployment: Vercel (Frontend), Firebase (Backend/Functions)
 
-### 1. Prerequisites
-- Node.js (v18.0 or newer)
-- npm or yarn
+Version Control: GitHub
 
-### 2. Installation
-```bash
-git clone https://github.com/your-username/roadresq-app.git
-cd roadresq-app
+📂 Project Architecture
+The codebase follows a scalable, modular architecture separating business logic from UI components.
+
+Plaintext
+src/
+├── components/       # Reusable UI components (Buttons, Modals, Cards)
+├── pages/            # Route components (Home, Dashboard, Tracking)
+├── layouts/          # Page layouts (CustomerLayout, ProviderLayout, AdminLayout)
+├── features/         # Domain-specific logic
+│   ├── customer/
+│   ├── provider/
+│   ├── admin/
+│   ├── ai/
+│   ├── assistance/
+│   ├── vehicles/
+│   └── services/
+├── firebase/         # Firebase initialization and service wrappers
+├── hooks/            # Custom React hooks
+├── contexts/         # React Context providers (Auth, Theme, Language)
+├── utils/            # Helpers, formatters, and constants
+├── types/            # TypeScript interfaces and type definitions
+├── i18n/             # Translation files and i18n configuration
+└── theme/            # CSS tokens, Tailwind config, theme switchers
+🚀 Getting Started
+1. Prerequisites
+Node.js (v18+ recommended)
+
+npm or yarn
+
+A Firebase account
+
+API keys for your AI Provider and Maps service
+
+2. Firebase Setup
+Create a new project in the Firebase Console.
+
+Enable Authentication (Email/Password & Phone).
+
+Enable Firestore Database and create the following core collections: users, vehicles, providers, services, assistanceRequests, requestEvents.
+
+Enable Firebase Storage (for user/vehicle profiles and provider documents).
+
+Initialize Firebase Cloud Functions (Requires Blaze plan) for secure server-side logic (AI calls, matching algorithms).
+
+3. Environment Variables
+Create a .env.local file in the root directory based on the .env.example file.
+
+Code snippet
+# PUBLIC VARIABLES (Safe for frontend)
+VITE_FIREBASE_API_KEY="your_api_key"
+VITE_FIREBASE_AUTH_DOMAIN="your_project.firebaseapp.com"
+VITE_FIREBASE_PROJECT_ID="your_project_id"
+VITE_FIREBASE_STORAGE_BUCKET="your_project.appspot.com"
+VITE_FIREBASE_MESSAGING_SENDER_ID="your_sender_id"
+VITE_FIREBASE_APP_ID="your_app_id"
+VITE_MAPS_API_KEY="your_maps_api_key_restricted_to_url"
+
+# SERVER-SIDE ONLY VARIABLES (Set these in Firebase Cloud Functions / Vercel only)
+AI_PROVIDER_API_KEY="your_secret_ai_key"
+PAYMENT_GATEWAY_SECRET="your_secret_payment_key"
+Note: Never expose AI or Payment secret keys in the Vite/React frontend environment variables.
+
+4. Installation & Local Development
+Bash
+# Clone the repository
+git clone https://github.com/yourusername/RoadResQ.git
+cd RoadResQ
+
+# Install dependencies
 npm install
-```
 
-### 3. Local Development
-```bash
+# Start the development server
 npm run dev
-```
-Open your browser at `http://localhost:5173`.
 
-### 4. Build for Production
-```bash
-npm run build
-```
+🔒 Security & Firestore Rules
+Ensure your Firestore and Storage rules are strictly properly configured before deployment.
 
----
+Customers can only read/write their own profiles, vehicles, and active requests.
 
-## 👥 Demo Accounts & Interactive Role Switcher
+Providers can only view requests assigned to them or broadcasted to their area.
 
-RoadResQ includes an interactive **Role Switcher** in the top navigation bar. You can toggle between roles with zero setup:
+Only Admins have global read/write access.
 
-1. **Customer View**:
-   - Pre-loaded as *Ramesh Kumar* (Chennai OMR).
-   - Test booking a flat tyre repair or asking ResQ AI in Tamil/Tanglish.
-2. **Provider View**:
-   - Pre-loaded as *Murugan QuickFix Auto Care* (4.9 Rating, Verified).
-   - Test going Online/Offline, accepting incoming emergency dispatches, and updating milestones (*On the way* ➔ *Arrived* ➔ *Complete*).
-3. **Platform Admin**:
-   - Review live incident dispatches, audit pending provider licenses (*e.g., Anand Chandrasekar - Apex EV*), and inspect performance graphs.
+Verification documents in Storage must be isolated from public read access.
 
----
+🌐 Deployment (Vercel)
+RoadResQ is optimized for Vercel deployment as a Single Page Application (SPA).
 
-## ☁️ Firebase Configuration & Security Rules
+Push your code to GitHub.
 
-RoadResQ is pre-configured and connected to your active Firebase project **`resq-app-f438e`** in `.env`:
-- **Project ID**: `resq-app-f438e`
-- **Auth Domain**: `resq-app-f438e.firebaseapp.com`
-- **Storage Bucket**: `resq-app-f438e.firebasestorage.app`
+Import the project into Vercel.
 
-Deploy the following security rules into your **Firestore Rules** in the Firebase Console:
+Add all VITE_ prefixed environment variables in the Vercel dashboard.
 
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    function isAuthenticated() { return request.auth != null; }
-    function isAdmin() { return isAuthenticated() && request.auth.token.role == 'ADMIN'; }
-    function isOwner(userId) { return isAuthenticated() && request.auth.uid == userId; }
+Ensure the Build Command is npm run build and the Output Directory is dist.
 
-    match /users/{userId} {
-      allow read, write: if isOwner(userId) || isAdmin();
-    }
-    match /vehicles/{vehicleId} {
-      allow read, write: if isAuthenticated();
-    }
-    match /providers/{providerId} {
-      allow read: if true;
-      allow write: if isOwner(providerId) || isAdmin();
-    }
-    match /assistanceRequests/{requestId} {
-      allow read, write: if isAuthenticated();
-    }
-  }
-}
-```
+Deploy.
 
----
+Ensure Firebase Cloud functions are deployed separately via Firebase CLI: firebase deploy --only functions.
 
-## 🚢 Deploying to Vercel
+🤝 Contributing
+Contributions are welcome. Please ensure that UI additions adhere strictly to the design system (No generic neon/AI aesthetics; maintain professional startup navy, white, and safety orange colors).
 
-RoadResQ is pre-configured with `vercel.json` for one-click deployment:
-
-1. Push your code to GitHub.
-2. Go to [Vercel](https://vercel.com) and import the repository.
-3. Framework Preset: **Vite**.
-4. Set any required environment variables from `.env.example`.
-5. Click **Deploy**. SPA client routing and SVG assets work immediately out of the box!
+📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
